@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 
 def menu():
     selection = None
-    gretting = " Welcome to lorenz-attractor CLI tool\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on\n so that the Chaos would settle into Determination by Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
+    gretting = " Welcome to lorenz-attractor CLI tool\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on\n so that the Chaos would settle into Determination by taking Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
     
-    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n \n0.quit\n\n"
+    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n \n 0.quit\n\n"
     while selection != 0:
         print(gretting,options)
         selection =  int(input(" please enter option number> "))
@@ -28,24 +28,39 @@ def selection_msg(option,x,y,z):
             
 def mood():
     color = None
-    print("\n btw how are you doing today ?\n can you please answer from the following options\n which can describe your mood the best:\n\n 1.Autumn\n 2.Summer\n 3.Spring\n 4.Winter")
+    colormap_list_of_lists = [
+        [plt.cm.autumn, "autumn"],
+        [plt.cm.summer, "summer"],
+        [plt.cm.spring, "spring"],
+        [plt.cm.winter, "winter"],
+        [plt.cm.cool, "cool"],
+        [plt.cm.pink, "pink"],
+        [plt.cm.hot, "hot"],
+        [plt.cm.copper, "copper"],
+        [plt.cm.bone, "bone"],
+        [plt.cm.afmhot, "afmhot"],
+        [plt.cm.gist_heat, "gist_heat"],
+        ]
+    cm_list_indecies =  [i for i in range(len(colormap_list_of_lists))]
     
+    msg = "\n btw how are you doing today ?\n can you please answer from the following options\n which can describe your mood the best:\n\n"
+    options = ""
+    moods = {}
+    
+    for n,c in zip(cm_list_indecies, colormap_list_of_lists[:]):
+        moods[n] = str(c[1]).capitalize()
+        
+    for key, value in  moods.items():
+        options += f"{key}.{value} "    
+    
+    print(msg,options)
     color = int(input(" please enter option number> "))
-    
-    if color == 1:
-        return plt.cm.autumn, "autumn"
-    
-    elif color == 2:
-        return plt.cm.summer, "summer"
-    
-    elif color == 3:
-        return plt.cm.spring, "spring"
-    
-    elif color == 4:
-        return plt.cm.winter, "winter"
-    
+    print()
+    if color in cm_list_indecies:
+        return colormap_list_of_lists[color]
     else:
-        return menu()             
+        return plt.cm.cool, "cool"
+    
     
 def fileserver():
     run_server = "./fileservergraphs&"
@@ -82,7 +97,7 @@ def hardwareInitConditions():
     
     msg = subprocess.getstatusoutput("cat /sys/class/thermal/thermal_zone*/temp")  # returns a list[status,output]
     m = re.search(r'-?\d\.?\d*', msg[1])   # a solution with a regex 
-    cpu_temp = float(m.group())/1000           # returns the substring that was matched by the RE
+    cpu_temp = float(m.group())           # returns the substring that was matched by the RE
     
     command = "free -m | awk 'NR==2{print $3}'" # using NR==2 in the awk command, we tell it to only operate on the second line of free's output.
     #command = "awk '/^Mem/ {print $3}' <(free -m)"  # for  /bin/bash 
@@ -137,3 +152,4 @@ def weatherInitConditions():
 # print(clean_data("17%"))
 #print(fileserver())
 #weatherInitConditions1()
+#mood()

@@ -6,7 +6,6 @@ import funcs as funcs
 from datetime import datetime 
 
 
-
 # Create an image of the Lorenz attractor.
 # The maths behind this code is described in the scipython blog article
 # at https://scipython.com/blog/the-lorenz-attractor/
