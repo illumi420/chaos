@@ -7,7 +7,7 @@ def menu():
     selection = None
     gretting = " Welcome to lorenz-attractor CLI tool\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on\n so that the Chaos would settle into Determination by Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
     
-    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n 0.quit\n\n"
+    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n \n0.quit\n\n"
     while selection != 0:
         print(gretting,options)
         selection =  int(input(" please enter option number> "))
