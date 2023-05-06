@@ -45,20 +45,20 @@ current_time = datetime.now()
 time_stamp = current_time.timestamp()
 date_time = datetime.fromtimestamp(time_stamp)
 
-file_name = "graphs/lorenz.svg"
+file_name = "graphs/lorenz"
 value = funcs.menu()
 
 if value == 2:
     u0, v0, w0 = funcs.hardwareInitConditions()
-    file_name = f"graphs/lorenz_cpu={u0}-mem={v0}-net={w0}.svg"
+    file_name = f"graphs/lorenz_cpu={u0}-mem={v0}-net={w0}"
 
 elif value == 3:    
     u0, v0, w0, location = funcs.weatherInitConditions()
-    file_name = f"graphs/lorenz_{location}_temp={u0}-humi={v0}-wind={w0}.svg"
+    file_name = f"graphs/lorenz_{location}_temp={u0}-humi={v0}-wind={w0}"
     
 elif value == 4:
     u0, v0, w0 = funcs.manualInitConditions()
-    file_name = f"graphs/lorenz_x={u0}-y={v0}-z={w0}.svg"
+    file_name = f"graphs/lorenz_x={u0}-y={v0}-z={w0}"
     
 funcs.selection_msg(value,u0,v0,w0)
 colormap = funcs.mood()
@@ -99,6 +99,6 @@ fig.suptitle(str(f"{date_time} mood: {name}"), fontsize=14, fontweight='bold',co
 # Remove all the axis clutter, leaving just the curve.
 ax.set_axis_off()
 
-plt.savefig(file_name, dpi=DPI)
+plt.savefig(funcs.graphics_extension(file_name+"_"+name), dpi=DPI)
 
 print(funcs.fileserver())

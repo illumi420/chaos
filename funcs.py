@@ -65,8 +65,28 @@ def mood():
         return colormap_list_of_lists[color]
     else:
         return plt.cm.cool, "cool"
+
+
+def graphics_extension(fname):
+    extensions = [
+        ".eps", ".jpeg", ".jpg", ".pdf", ".pgf", ".png", ".ps", ".raw", ".rgba", ".svg", ".svgz", ".tif", ".tiff", ".webp" 
+        ]
+    extensions_list_indecies =  [i for i in range(len(extensions))]
+    options = " "
+    formats = {}
     
-    
+    for i, e in zip(extensions_list_indecies,extensions):
+        formats[i] = e
+    for key, value in formats.items():
+        options += f"{key}{value}  "    
+    print(options)
+    msg = int(input(" please select file extension option number> "))
+    print()
+    if msg in extensions_list_indecies:
+        return f"{fname}{extensions[msg]}"
+    return f"{fname}{extensions[5]}"
+
+
 def fileserver():
     run_server = "./fileservergraphs&"
     subprocess.check_call(run_server, shell=True, text=True, executable="/bin/sh")
@@ -154,6 +174,7 @@ def manualInitConditions():
     return x, y * 10, z * 10
 
 
+
 # print(hardwareInitConditions())
 # weatherInitConditions()
 # print(clean_data("17%"))
@@ -161,3 +182,5 @@ def manualInitConditions():
 #weatherInitConditions1()
 #mood()
 #print(manualInitConditions())
+# fn = "graphs/lorenz"
+# print(graphics_extension(fn))
