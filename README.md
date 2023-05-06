@@ -24,7 +24,7 @@
   <p>I thought to look up a <em>python</em> script that can plot the Lorenz Attractor, it sounded like fun as by tweaking the Initial Conditions you get to influence the graphic result<p>
   <p>Under the influence of the tragidy of me still not landing a job after my graduation, I picked myself up with the programing language I am comfortable  with, <em>python</em> and its cool dependencies and modules</p>
   <p>i started writing funcs.py to integrate user-input to the orginal lorenz_attractor.py plotter script
-  and thought about two ways to get random Initial values for the plot, <b>Hardware readings</b> and <b>Weather readings</b>, the latter based on http request fetched data for a city based on user input.</p><p>in order to get a similiar attractor to Lorenzs, the fetched initial positive valus has to go through under simple math to keep them near to Lorenzs initial variables values where <em>x</em> < 1 & <em>y</em>, <em>z</em> >= 1 </p> 
+  and thought about two ways to get unique Initial values for the plot, <b>Hardware readings</b> and <b>Weather readings</b>, the latter based on http request fetched data for a city based on user input. as the fetched data from readings is always slightly different this would garantie a unique slightly different plot on  each run</p><p>in order to get a similiar attractor to Lorenzs, the fetched initial positive valus has to go through under simple math to keep them near to Lorenzs initial variables values where <em>x</em> < 1 & <em>y</em>, <em>z</em> >= 1 </p> 
 </details>
 
 # Whats on this repo
