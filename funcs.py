@@ -7,7 +7,7 @@ def menu():
     selection = None
     gretting = " Welcome to lorenz-attractor CLI tool\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on\n so that the Chaos would settle into Determination by taking Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
     
-    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n \n 0.quit\n\n"
+    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n 4.Manualy \n 0.quit\n\n"
     while selection != 0:
         print(gretting,options)
         selection =  int(input(" please enter option number> "))
@@ -15,6 +15,7 @@ def menu():
             quit()
         else:
             return selection
+        
         
 def selection_msg(option,x,y,z):
     if option == 1:    
@@ -25,6 +26,10 @@ def selection_msg(option,x,y,z):
     
     elif option == 3:    
         print(f" \n based on the Weather in {city_name}:\n Rate of convection proportional value = {x} = Temperature \n Horizontal Temperature Variation proportional value = {y} = Humidity \n Vertical Temprature Variation proportional value = {z} = Wind")    
+
+    elif option == 4:    
+        print(f" \n based on stdin:\n Rate of convection proportional value = {x}\n Horizontal Temperature Variation proportional value = {y}\n Vertical Temprature Variation proportional value = {z}")
+            
             
 def mood():
     color = None
@@ -65,6 +70,7 @@ def mood():
 def fileserver():
     run_server = "./fileservergraphs&"
     subprocess.check_call(run_server, shell=True, text=True, executable="/bin/sh")
+    
     process_id =  str(subprocess.check_output("ps -aux | grep ./fileservergraphs | awk 'NR==1{print $2}'",shell=True, text=True, executable="/bin/sh")).replace("\n","")
     
     command  = "ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f1 | awk 'NR==2{print $1}'"
@@ -77,11 +83,13 @@ def fileserver():
     
     return msg
 
+
 def divider(num):
     num = int(num)
     num  =  str(num)
     zeros =  10 ** len(num)
     return (float(num)) / zeros
+
 
 def clean_data(a_string):
     value = ""
@@ -89,6 +97,7 @@ def clean_data(a_string):
         if n.isdigit():
             value += n
     return float(value)        
+    
     
 def hardwareInitConditions():
     cpu_temp  = None
@@ -141,6 +150,11 @@ def weatherInitConditions():
     except:
         return " Please enter a valid city name"
 
+
+def manualInitConditions():
+    x, y, z = divider(float(input(" enter proportional value for Rate of convection x "))), divider(float(input(" enter proportional value Horizontal Temperature Variation y "))), divider(float(input(" enter proportional value Vertical Temperature Variation z ")))
+    return x, y * 10, z * 10
+
 # a = 0
 # b = 0
 # c = 0
@@ -153,3 +167,4 @@ def weatherInitConditions():
 #print(fileserver())
 #weatherInitConditions1()
 #mood()
+#print(manualInitConditions())

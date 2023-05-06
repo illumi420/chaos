@@ -45,6 +45,7 @@ In particular, the equations describe the rate of change of three quantities wit
 """
 tmax, n = 100, 10000
 
+
 # Integrating User-Input to the orginal code, for manipulating the Initial Conditions values.
 current_time = datetime.now()
 time_stamp = current_time.timestamp()
@@ -61,8 +62,13 @@ elif value == 3:
     u0, v0, w0, location = funcs.weatherInitConditions()
     file_name = f"graphs/lorenz_{location}_temp={u0}-humi={v0}-wind={w0}.svg"
     
+elif value == 4:
+    u0, v0, w0 = funcs.manualInitConditions()
+    file_name = f"graphs/lorenz_x={u0}-y={v0}-z={w0}.svg"
+    
 funcs.selection_msg(value,u0,v0,w0)
 weather = funcs.mood()
+
 
 def lorenz(t, X, sigma, beta, rho):
     """The Lorenz equations."""
