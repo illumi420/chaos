@@ -1,7 +1,9 @@
 import re, subprocess, matplotlib.pyplot as plt
 import requests, json
 from bs4 import BeautifulSoup
-import os
+import os, random
+ 
+
  
 global GRAPHS_PATH
 GRAPHS_PATH = os.getcwd()+"/graphs/"
@@ -38,6 +40,7 @@ def selection_msg(option,x,y,z):
             
 def mood():
     color = None
+    random_mood = random.randint(0, 11)
     colormap_list_of_lists = [
         [plt.cm.autumn, "autumn"],
         [plt.cm.summer, "summer"],
@@ -62,15 +65,17 @@ def mood():
         moods[n] = str(c[1]).capitalize()
         
     for key, value in  moods.items():
-        options += f"{key}.{value} "    
-    
-    print(msg,options)
-    color = int(input(" please enter option number> "))
-    print()
-    if color in cm_list_indecies:
-        return colormap_list_of_lists[color]
-    else:
-        return plt.cm.cool, "cool"
+        options += f"{key}.{value} "
+            
+    try:
+        print(msg,options+"\n Press Enter if You're feeling Random")
+        color = int(input(" please enter option number> "))
+        print()
+        if color in cm_list_indecies:
+            return colormap_list_of_lists[color]
+    except:
+        print()
+        return colormap_list_of_lists[random_mood]
 
 
 def graphics_extension(fname):
@@ -86,11 +91,14 @@ def graphics_extension(fname):
     for key, value in formats.items():
         options += f"{key}{value}  "    
     print(options)
-    msg = int(input(" please select file extension option number> "))
-    print()
-    if msg in extensions_list_indecies:
-        return f"{fname}{extensions[msg]}"
-    return f"{fname}{extensions[5]}"
+    
+    try:
+        msg = int(input(" please select file extension option number> "))
+        print()
+        if msg in extensions_list_indecies:
+            return f"{fname}{extensions[msg]}"
+    except:
+        return f"{fname}{extensions[5]}"
 
 
 def fileserver():
@@ -105,7 +113,7 @@ def fileserver():
     command =  f"ip -f inet addr show {net_interface} | sed -En -e 's/.*inet ([0-9.]+).*/\\1/p'"
     ip_address = str(subprocess.check_output(command, shell=True, text=True, executable="/bin/sh")).replace("\n","")
     
-    msg = f" You can check stored graphics in {GRAPHS_PATH} by visiting http://{ip_address}:9630 from your Web-Browser\n you can stop the file server by kill {process_id}"
+    msg = f" You can check stored graphics in {GRAPHS_PATH}\n by visiting http://{ip_address}:9630 from your Web-Browser\n you can stop the file server by kill {process_id}"
     
     return msg
 
