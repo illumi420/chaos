@@ -6,6 +6,8 @@ import funcs as funcs
 from datetime import datetime 
 
 
+graphs_path = (funcs.GRAPHS_PATH)
+# graphs_path = os.getcwd()+"/graphs/"
 WIDTH, HEIGHT, DPI = 1000, 750, 100
 
 # Lorenz paramters and initial conditions.
@@ -45,20 +47,20 @@ current_time = datetime.now()
 time_stamp = current_time.timestamp()
 date_time = datetime.fromtimestamp(time_stamp)
 
-file_name = "graphs/lorenz"
+file_name = f"{graphs_path}/lorenz"
 value = funcs.menu()
 
 if value == 2:
     u0, v0, w0 = funcs.hardwareInitConditions()
-    file_name = f"graphs/lorenz_cpu={u0}-mem={v0}-net={w0}"
+    file_name += f"_cpu={u0}-mem={v0}-net={w0}"
 
 elif value == 3:    
     u0, v0, w0, location = funcs.weatherInitConditions()
-    file_name = f"graphs/lorenz_{location}_temp={u0}-humi={v0}-wind={w0}"
+    file_name += f"_{location}_temp={u0}-humi={v0}-wind={w0}"
     
 elif value == 4:
     u0, v0, w0 = funcs.manualInitConditions()
-    file_name = f"graphs/lorenz_x={u0}-y={v0}-z={w0}"
+    file_name += f"_x={u0}-y={v0}-z={w0}"
     
 funcs.selection_msg(value,u0,v0,w0)
 colormap = funcs.mood()

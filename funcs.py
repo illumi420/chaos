@@ -1,13 +1,18 @@
 import re, subprocess, matplotlib.pyplot as plt
 import requests, json
 from bs4 import BeautifulSoup
+import os
+ 
+global GRAPHS_PATH
+GRAPHS_PATH = os.getcwd()+"/graphs/"
 
 
 def menu():
+    print()
     selection = None
-    gretting = " Welcome to lorenz-attractor CLI tool\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on\n so that the Chaos would settle into Determination by taking Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
+    gretting = " Welcome to lorenz-attractor CLI tool\n\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on so that the Chaos would settle into\n Determination by taking Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
     
-    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n 4.Manualy \n 0.quit\n\n"
+    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n 4.Manualy \n 0.quit\n"
     while selection != 0:
         print(gretting,options)
         selection =  int(input(" please enter option number> "))
@@ -45,6 +50,7 @@ def mood():
         [plt.cm.bone, "bone"],
         [plt.cm.afmhot, "afmhot"],
         [plt.cm.gist_heat, "gist_heat"],
+        [plt.cm.Wistia, "Wistia"]
         ]
     cm_list_indecies =  [i for i in range(len(colormap_list_of_lists))]
     
@@ -99,7 +105,7 @@ def fileserver():
     command =  f"ip -f inet addr show {net_interface} | sed -En -e 's/.*inet ([0-9.]+).*/\\1/p'"
     ip_address = str(subprocess.check_output(command, shell=True, text=True, executable="/bin/sh")).replace("\n","")
     
-    msg = f" You can check created graphics by visiting http://{ip_address}:9630 from your Web-Browser\n you can stop the file server by kill {process_id}"
+    msg = f" You can check stored graphics in {GRAPHS_PATH} by visiting http://{ip_address}:9630 from your Web-Browser\n you can stop the file server by kill {process_id}"
     
     return msg
 
