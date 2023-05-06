@@ -155,14 +155,9 @@ def manualInitConditions():
     x, y, z = divider(float(input(" enter proportional value for Rate of convection x "))), divider(float(input(" enter proportional value Horizontal Temperature Variation y "))), divider(float(input(" enter proportional value Vertical Temperature Variation z ")))
     return x, y * 10, z * 10
 
-# a = 0
-# b = 0
-# c = 0
-# print(hardwareInitConditions(a,b,c))
+
+# print(hardwareInitConditions())
 # weatherInitConditions()
-# city_name = input("Enter City Name: ")
-# city_name = city_name + " weather"
-#print(find_weather())
 # print(clean_data("17%"))
 #print(fileserver())
 #weatherInitConditions1()
