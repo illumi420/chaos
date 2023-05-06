@@ -3,7 +3,7 @@
 
 <p>This Tool aims to create an image of the Butterfly shaped lorenz-attractor. In order to portrait the Butterfly Effect on a graphic plot, the Attractor needs Initial Conditions to Sensitively Debend on so that the Chaos would settle into Determination by taking Unpredictable Patterns.</p>
 <details>
-<summary><em>where the math is</em></summary> <em>to be found in file <b>lorenz_attractor.py</b> lines 17 to 46 is where the Lorenz ordinary differential equations constansts and variables are declared and described.</em> <em>lines from 67 to 81 is where the 'ode's are defined and solved</em>
+<summary><em>where the math is</em></summary> <em>to be found in file <b>lorenz_attractor.py</b> lines 17 to 46 is where the Lorenz ordinary differential equations constansts and variables are declared and described.</em> <em>lines from 67 to 81 is where the 'ode's are defined and solved. a graphic for the  equations is in <em>graphs</em> dir.</em>
 </details>
 
 <b>Supported Initial Conditions:</b> 
