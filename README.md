@@ -93,4 +93,6 @@
     <p>https://www.alexedwards.net/blog/serving-static-sites-with-go</p>
     <p>https://copyprogramming.com/howto/how-to-execute-awk-command-by-python-code</p>
     <p>https://matplotlib.org/stable/tutorials/colors/colormaps.html</p>
+    <p>https://stackoverflow.com/questions/58433333/auto-activate-virtual-environment-in-visual-studio-code</p>
+    <p>https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elements_br</p>
 </details>
