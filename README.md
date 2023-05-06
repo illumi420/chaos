@@ -76,3 +76,21 @@
   </pre></code>
   <h3>NOTE:</h3><p>Don't forget to kill fileservergraphs process</p>
 </details>
+
+# Helpful Resources for this project
+<details>
+  <summary>
+    <b>links</b>
+  </summary>
+    <p>https://scipython.com/blog/the-lorenz-attractor/</p>
+    <p>https://en.wikipedia.org/wiki/Lorenz_system</p>
+    <p>https://python-forum.io/thread-33291.html#:~:text=To%20read%20CPU%20temp%20at,can%20use%20the%20vcgencmd%20command.&text=echo%20%22The%20CPU%20is%20at,temp%20%3D%2045.5%20'C%20degrees.&text=%23which%20returns%20uns%20a%20floating,in%20which%20it%20is%20contained.</p>
+    <p>https://stackoverflow.com/questions/58047338/bash-script-for-get-a-only-specific-value-from-linux-command-output</p>
+    <p>https://www.cyberciti.biz/faq/linux-list-network-interfaces-names-command/</p>
+    <p>https://docs.rackspace.com/support/how-to/identifying-network-interfaces-on-linux/</p>
+    <p>https://stackoverflow.com/questions/4289331/how-to-extract-numbers-from-a-string-in-python</p>
+    <p>https://www.makeuseof.com/python-live-weather-data/?newsletter_popup=1</p>
+    <p>https://www.alexedwards.net/blog/serving-static-sites-with-go</p>
+    <p>https://copyprogramming.com/howto/how-to-execute-awk-command-by-python-code</p>
+    <p>https://matplotlib.org/stable/tutorials/colors/colormaps.html</p>
+</details>
