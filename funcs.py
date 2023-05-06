@@ -1,7 +1,7 @@
 import re, subprocess, matplotlib.pyplot as plt
 import requests, json
 from bs4 import BeautifulSoup
-import os, random
+import os, random, string
  
 
  
@@ -14,7 +14,7 @@ def menu():
     selection = None
     gretting = " Welcome to lorenz-attractor CLI tool\n\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on so that the Chaos would settle into\n Determination by taking Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
     
-    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n 4.Manualy \n 0.quit\n"
+    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n 4.Manualy/Random \n 0.quit\n"
     while selection != 0:
         print(gretting,options)
         selection =  int(input(" please enter option number> "))
@@ -68,7 +68,7 @@ def mood():
         options += f"{key}.{value} "
             
     try:
-        print(msg,options+"\n Press Enter if You're feeling Random")
+        print(msg,options+"\n press Enter if You're feeling Random")
         color = int(input(" please enter option number> "))
         print()
         if color in cm_list_indecies:
@@ -133,6 +133,62 @@ def clean_data(a_string):
     return float(value)        
     
     
+def controling_input(input_string):
+    new_float = "0."
+    temp = ""
+    special_chars = "/,-#_!?@\"|';:+$%=*([])}{><"
+                         
+    # for mixed values if input is not empty
+    if ( len(input_string) != 0 ) and ( (any(s_chars in string.ascii_letters for s_chars in input_string)) or (any(s_chars in special_chars for s_chars in input_string)) ) and ( (input_string[0] != ".") or (input_string[-1] != ".") ):
+        
+        # for negative values
+        if  input_string[0] == "-":
+            input_string = input_string.replace("-","")
+            
+        # taking care of the floating point
+        if ( input_string[0] == "." ) or ( input_string[-1] == "." ):
+            input_string = input_string.replace(".","")    
+        
+        # for any numerical values provided, to keep it rather returning the ASCII-Code of it
+        for char in input_string:
+            if (re.compile('[0-9]+').search(char)):
+                temp += char
+                
+            # use char ASCII-Code    
+            else:    
+                temp += str(ord(char))
+                
+        input_string = temp    
+         
+    # for empty input
+    global random_flag
+    random_flag = False 
+    if len(input_string) == 0:
+        random_string = str(round(random.uniform(0.0, 9.99),random.randint(1,9)))
+        input_string = random_string
+        random_flag = True
+    
+    # checking if input_string can be parsed as a float, and spliting input_string to create a new_float out of it  
+    if isinstance(float(input_string),float):
+               
+        # for int input    
+        if (str(float(input_string))[-2] == ".") and (str(float(input_string))[-1] == "0"):
+            before_comma  = input_string.split(".")[0]
+            after_comma = "0"
+        
+        # input is valid float    
+        else:
+            before_comma, after_comma = input_string.split(".")
+            
+        if int(before_comma) >= 1:
+            new_float  += before_comma + after_comma
+            return float(new_float)
+
+        elif int(before_comma) == 0:
+            new_float  += after_comma
+            return float(new_float)        
+    
+
 def hardwareInitConditions():
     cpu_temp  = None
     ram_load = None
@@ -183,11 +239,17 @@ def weatherInitConditions():
         return " Please enter a valid city name"
 
 
-def manualInitConditions():
-    x, y, z = divider(float(input(" enter proportional value for Rate of convection x "))), divider(float(input(" enter proportional value Horizontal Temperature Variation y "))), divider(float(input(" enter proportional value Vertical Temperature Variation z ")))
+def manual_randomInitConditions():
+    print()
+    print(" press Enter for Random value")
+    x, y, z = controling_input(input(" enter proportional value for Rate of convection x ")), controling_input(input(" enter proportional value Horizontal Temperature Variation y ")), controling_input(input(" enter proportional value Vertical Temperature Variation z "))
+        
     return x, y * 10, z * 10
 
-
+           
+#user = input("bla ")
+#print(ord(user))
+#print(controling_input(user))
 
 # print(hardwareInitConditions())
 # weatherInitConditions()

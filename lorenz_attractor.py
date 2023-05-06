@@ -59,9 +59,13 @@ elif value == 3:
     file_name += f"_{location}_temp={u0}-humi={v0}-wind={w0}"
     
 elif value == 4:
-    u0, v0, w0 = funcs.manualInitConditions()
-    file_name += f"_x={u0}-y={v0}-z={w0}"
+    u0, v0, w0 = funcs.manual_randomInitConditions()
     
+    if funcs.random_flag:
+        file_name += f"_random_x={u0}-y={v0}-z={w0}"
+    else:    
+        file_name += f"_x={u0}-y={v0}-z={w0}"
+        
 funcs.selection_msg(value,u0,v0,w0)
 colormap = funcs.mood()
 
@@ -92,15 +96,15 @@ fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
 # Make the line multi-coloured by plotting it in segments of length s which
 # change in colour across the whole time series.
 s = 9
-cmap, name = colormap
+cmap, mood_name = colormap
 for i in range(0,n-s,s):
     ax.plot(x[i:i+s+1], y[i:i+s+1], z[i:i+s+1], color=cmap(i/n), alpha=0.3)
     
 
-fig.suptitle(str(f"{date_time} mood: {name}"), fontsize=14, fontweight='bold',color='white')
+fig.suptitle(str(f"{date_time} mood: {mood_name}"), fontsize=14, fontweight='bold',color='white')
 # Remove all the axis clutter, leaving just the curve.
 ax.set_axis_off()
 
-plt.savefig(funcs.graphics_extension(file_name+"_"+name), dpi=DPI)
+plt.savefig(funcs.graphics_extension(file_name+"_"+mood_name), dpi=DPI)
 
 print(funcs.fileserver())
