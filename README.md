@@ -57,6 +57,7 @@
   <p>in case of other errors, make sure you have both <em>python3-pip</em> and <em>python3-venv</em> packages installed on your system</p>
   <pre><code>
     $ sudo apt install python3-pip python3-venv
+    $ python3 -m pip install virtualenv
     $ python3 -m venv ~/chaos/chaosenv
     $ source chaosenv/bin/activate
     (chaosenv)$ pip install --upgrade pip
