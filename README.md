@@ -24,13 +24,17 @@
 </details>
 
 # Whats on this repo
+<details>
 <ul>
-  <li><b>chaosenv</b> python enviroment Directory to store dependicies files</li>
-  <li><b>graphs</b> Directory to store plotted graphics</li>
-  <li><b>filesservergraphs</b> pre-build golang Executable to http serve <em>graphs</em> dir on port <b>9630</b></li>
+  <li><b>__pycache__ </b> directory that is created by the Python interpreter when it imports a module. It contains the compiled bytecode of the module, which can be used to speed up subsequent imports of the same module</li>
+  <li><b>.vscode</b> has the settings.json file for your vscode to automate <em>chaosenv</em> activation while running <em>lorenz_attractor.py</em></li>
+  <li><b>chaosenv</b> Python enviroment directory to store dependicies files</li>
+  <li><b>graphs</b> directory to store plotted graphics</li>
+  <li><b>filesservergraphs</b> pre-build Golang Executable to http serve <em>graphs</em> dir on port <b>9630</b></li>
   <li><b>funcs.py</b> functions to integrate user-input</li>
   <li><b>lorenz_attractor.py</b> plotter</li>
 </ul>
+</details>
 
 # Deployment
 <h3>Requierments:</h3>
@@ -49,5 +53,17 @@
   </pre></code>
   <p>in case of Error Module not found:<br>make sure that the venv is activated and install the dependencies<pre><code>
     (chaosenv)$ pip install -r requierments.txt
-  </pre></code></p></details></li>
+  </pre></code></p>
+  <p>in case of other errors, make sure you have both <em>python3-pip</em> and <em>python3-venv</em> packages installed on your system</p>
+  <pre><code>
+    $ sudo apt install python3-pip python3-venv
+    $ python3 -m venv ~/chaos/chaosenv
+    $ source chaosenv/bin/activate
+    (chaosenv)$ pip install --upgrade pip
+    (chaosenv)$ pip3 install -r requierments.txt
+    (chaosenv)$ pip3 install --upgrade matplotlib
+    (chaosenv)$ python3 lorenz_attractor.py
+  </pre></code>
+  </details>
+  </li>
 </ul>
