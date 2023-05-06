@@ -61,7 +61,7 @@ elif value == 4:
     file_name = f"graphs/lorenz_x={u0}-y={v0}-z={w0}.svg"
     
 funcs.selection_msg(value,u0,v0,w0)
-weather = funcs.mood()
+colormap = funcs.mood()
 
 
 def lorenz(t, X, sigma, beta, rho):
@@ -90,7 +90,7 @@ fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
 # Make the line multi-coloured by plotting it in segments of length s which
 # change in colour across the whole time series.
 s = 9
-cmap, name = weather
+cmap, name = colormap
 for i in range(0,n-s,s):
     ax.plot(x[i:i+s+1], y[i:i+s+1], z[i:i+s+1], color=cmap(i/n), alpha=0.3)
     
