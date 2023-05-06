@@ -53,6 +53,19 @@
   <li>python3-venv</li>
 </ul>
 </details>  
+
+<details>
+<summary><b>Dependencies/Modules</b></summary>
+  <pre><code>
+    numpy
+    scipy
+    matplotlib
+    mpl_toolkits.mplot3d 
+    Beautifulsoup
+    requests
+  </pre></code>
+</details>
+
 <h3>get it running:</h3>
 <details>
   <summary><b>fork n clone</b> [On-Premises]</summary> <p>fork this repo and clone it localy</p><p>from your local machine:</p><pre><code>
