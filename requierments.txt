@@ -19,3 +19,4 @@ six
 soupsieve
 urllib
 zipp
+geonamescache

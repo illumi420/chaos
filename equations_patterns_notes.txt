@@ -1,0 +1,6 @@
+Noted from comparing graphics that are created from different constants values:
+equation pattern color reflect a lorenz attractor made with [winter] colormap
+
+changes made on sigma for "equation dx/dt" has direct influence to the [dark blue] pattern
+changes made on beta for "equation dz/dt" has direct influence to the [lighter green] pattern
+changes made on beta for "equation dz/dt" has direct influence to the [darker green] pattern

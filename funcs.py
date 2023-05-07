@@ -1,9 +1,7 @@
 import re, subprocess, matplotlib.pyplot as plt
 import requests, json
 from bs4 import BeautifulSoup
-import os, random, string
- 
-
+import os, random, string 
  
 global GRAPHS_PATH
 GRAPHS_PATH = os.getcwd()+"/graphs/"

@@ -13,25 +13,26 @@ WIDTH, HEIGHT, DPI = 1000, 750, 100
 # Lorenz paramters and initial conditions.
 
 # Constants:
-sigma, beta, rho = 10, 2.667, 28
+sigma, beta, rho = 12, 2.667, 27 
 """ 
-sigma(Prandtl number): is the ratio of momentum diffusivity (kinematic viscosity) to thermal diffusivity.
+sigma(Prandtl number) σ : is the ratio of momentum diffusivity (kinematic viscosity) to thermal diffusivity.
 It is used in fluids and flow rates to signify the rate of heat transfer.
 
-rho(Rayleigh number divided by the critical Rayleigh number): is typically associated with density. 
+beta(geometric factor) β: is the measure of compressibility which is the measure of relative volume change of a fluid.
+
+rho(Rayleigh number divided by the critical Rayleigh number) ρ: is typically associated with density. 
 However, here the 'rho' value is the Rayleigh number, a measure of the instability of a layer of fluid 
 (due to differences of temperature and density at the top and bottom). 
 We use it to describe natural convection and heat transfer by natural convection.
 
-beta(geometric factor): is the measure of compressibility which is the measure of relative volume change of a fluid.
 """
 
 # Initial Conditions values:
 u0, v0, w0 = 0, 1, 1.05
 """
-u0: is proportional to the rate of convection.
-v0: is proportional to the horizontal temperature variation.
-w0: is proportional to the vertical temperature variation.
+u0: is proportional to the rate of convection x.
+v0: is proportional to the horizontal temperature variation y.
+w0: is proportional to the vertical temperature variation z.
 """
 
 # Maximum time point and total number of time points.
@@ -73,9 +74,9 @@ colormap = funcs.mood()
 def lorenz(t, X, sigma, beta, rho):
     """The Lorenz equations."""
     u, v, w = X
-    up = -sigma*(u - v)
-    vp = rho*u - v - u*w
-    wp = -beta*w + u*v
+    up = sigma*(v - u)
+    vp = u*(rho-w) - v
+    wp = u*v  - beta*w 
     return up, vp, wp
 
 
@@ -98,7 +99,7 @@ fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
 s = 9
 cmap, mood_name = colormap
 for i in range(0,n-s,s):
-    ax.plot(x[i:i+s+1], y[i:i+s+1], z[i:i+s+1], color=cmap(i/n), alpha=0.3)
+    ax.plot(x[i:i+s+1], y[i:i+s+1], z[i:i+s+1], color=cmap(i/n), alpha=0.9)
     
 
 fig.suptitle(str(f"{date_time} mood: {mood_name}"), fontsize=14, fontweight='bold',color='white')
