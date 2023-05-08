@@ -13,17 +13,17 @@ WIDTH, HEIGHT, DPI = 1000, 750, 100
 # Lorenz paramters and initial conditions.
 
 # Constants:
-sigma, beta, rho = 12, 2.667, 28 
+sigma, rho, beta = 10, 28, 2.667 
 """ 
 sigma(Prandtl number) σ : is the ratio of momentum diffusivity (kinematic viscosity) to thermal diffusivity.
 It is used in fluids and flow rates to signify the rate of heat transfer.
-
-beta(geometric factor) β: is the measure of compressibility which is the measure of relative volume change of a fluid.
 
 rho(Rayleigh number divided by the critical Rayleigh number) ρ: is typically associated with density. 
 However, here the 'rho' value is the Rayleigh number, a measure of the instability of a layer of fluid 
 (due to differences of temperature and density at the top and bottom). 
 We use it to describe natural convection and heat transfer by natural convection.
+
+beta(geometric factor) β: is the measure of compressibility which is the measure of relative volume change of a fluid.
 
 """
 
