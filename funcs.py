@@ -237,25 +237,52 @@ def weatherInitConditions():
     headers = {
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
 }
+    cities = []
+    file =  open("cities.txt")
+    for city in file:
+        cities.append(city)
+    file.close()    
+    
     global city_name 
     city_name = input(" Enter city you want to fetch weather data from> ").capitalize()
+    print(" press Enter for Random City")
 
-    try:
-        res = requests.get(
-        f'https://www.google.com/search?q={city_name}+weather&oq={city_name}+weather&aqs=chrome..69i57j0i10i512l9.3827j1j7&client=ubuntu-chr&sourceid=chrome&ie=UTF-8', headers=headers)
+    if len(city_name) != 0:
+        try:
+            res = requests.get(
+            f'https://www.google.com/search?q={city_name}+weather&oq={city_name}+weather&aqs=chrome..69i57j0i10i512l9.3827j1j7&client=ubuntu-chr&sourceid=chrome&ie=UTF-8', headers=headers)
 
-        soup = BeautifulSoup(res.text, 'html.parser')
-        temperature = soup.select('#wob_tm')[0].getText().strip()
-        humidity = soup.select('#wob_hm')[0].getText().strip()
-        wind = soup.select('#wob_ws')[0].getText().strip()
-
-        temperature =  divider(float(temperature))
-        humidity = divider(clean_data(humidity)) * 10
-        wind = divider(clean_data(wind)) * 10
+            soup = BeautifulSoup(res.text, 'html.parser')
+            
+            temperature = divider(float(soup.select('#wob_tm')[0].getText().strip()))
+            humidity = divider(clean_data(soup.select('#wob_hm')[0].getText().strip())) * 10
+            wind = divider(clean_data(soup.select('#wob_ws')[0].getText().strip())) * 10
+            
+            return temperature, humidity, wind, city_name
+        except:
+            return " Please enter a valid city name"
+    
+    # for random city
+    else:
+        random_city = random.randint( 0, (len(cities)-1))
+        city_name = str(cities[random_city]).replace("\n","")
         
-        return temperature, humidity, wind, city_name
-    except:
-        return " Please enter a valid city name"
+        try:
+            res = requests.get(
+                f'https://www.google.com/search?q={city_name}+weather&oq={city_name}+weather&aqs=chrome..69i57j0i10i512l9.3827j1j7&client=ubuntu-chr&sourceid=chrome&ie=UTF-8', headers=headers)
+
+            soup = BeautifulSoup(res.text, 'html.parser')
+            
+            temperature = divider(float(soup.select('#wob_tm')[0].getText().strip()))
+            humidity = divider(clean_data(soup.select('#wob_hm')[0].getText().strip())) * 10
+            wind = divider(clean_data(soup.select('#wob_ws')[0].getText().strip())) * 10
+        
+            return temperature, humidity, wind, city_name
+        
+        except IndexError:
+            return " Please try again", weatherInitConditions()
+        
+
 
 
 def manual_randomInitConditions():
