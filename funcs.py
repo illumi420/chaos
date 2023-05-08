@@ -49,16 +49,16 @@ def menu():
             
           
 def selection_msg(option,x,y,z):
-    if option == 1:    
+    if option == "1":    
         print(f" \n based on Edward N. Lorenz:\n Rate of convection proportional value = {x} \n Horizontal Temperature Variation proportional value = {y} \n Vertical Temprature Variation proportional value = {z}")
         
-    elif option == 2:
+    elif option == "2":
         print(f" \n based on your Hardware state:\n Rate of convection proportional value = {x} = CPU-Temp \n Horizontal Temperature Variation proportional value = {y} = Mem-Load \n Vertical Temprature Variation proportional value = {z} = Net-Interface Recived Packets")        
     
-    elif option == 3:    
+    elif option == "3":    
         print(f" \n based on the Weather in {city_name}:\n Rate of convection proportional value = {x} = Temperature \n Horizontal Temperature Variation proportional value = {y} = Humidity \n Vertical Temprature Variation proportional value = {z} = Wind")    
 
-    elif option == 4:    
+    elif option == "4":    
         print(f" \n based on stdin:\n Rate of convection proportional value = {x}\n Horizontal Temperature Variation proportional value = {y}\n Vertical Temprature Variation proportional value = {z}")
             
             
@@ -263,8 +263,8 @@ def weatherInitConditions():
     file.close()    
     
     global city_name 
-    city_name = input(" Enter city you want to fetch weather data from> ").title()
     print(" press Enter for Random City")
+    city_name = input(" Enter city you want to fetch weather data from> ").title()
 
     if len(city_name) != 0:
         try:
