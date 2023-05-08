@@ -42,7 +42,7 @@ def menu():
     if len(selection) == 0:
         selection = random.randint(1,4)
         # finding option name based on random option number
-        option = (re.findall(rf'(?<={str(selection)}.)[^.\n]*',options))
+        option = re.findall(rf'(?<={str(selection)}.)[^.\n]*',options)
         print(f" chose option {selection}.{option[0]}")
         return str(selection)
             
@@ -106,7 +106,7 @@ def graphics_extension(fname):
     extensions = [
         ".eps", ".jpeg", ".jpg", ".pdf", ".pgf", ".png", ".ps", ".raw", ".rgba", ".svg", ".svgz", ".tif", ".tiff", ".webp" 
         ]
-    extensions_list_indecies =  [i for i in range(len(extensions))]
+    extensions_list_indecies =  [i for i in range(len(extensions)+1)]
     options = " "
     formats = {}
     
@@ -122,6 +122,7 @@ def graphics_extension(fname):
         if msg in extensions_list_indecies:
             return f"{fname}{extensions[msg]}"
     except:
+        print()
         return f"{fname}{extensions[5]}"
 
 

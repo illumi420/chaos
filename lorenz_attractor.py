@@ -6,7 +6,7 @@ import funcs as funcs
 from datetime import datetime 
 
 
-print() # greeting ascii_attractor
+print() # ascii_attractor greeting
 print(funcs.ascii_art())
 
 
