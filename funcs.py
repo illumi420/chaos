@@ -7,6 +7,7 @@ global GRAPHS_PATH
 GRAPHS_PATH = os.getcwd()+"/graphs/"
 
 
+
 def ascii_art():
     ascii_art = "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@&&&&&&&&&&&##&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&&&&@@@@@@@@@@\n@@@@@@@@@&&&&&&##&&&&&&&&&####&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@&&#BBBB##&&&&@@@@@@@@\n@@@@@@@@&&&&&#&&&&&&&&&&&&&&&&####&&&&&@@@@@@@@@@@@@@@@@@@@&&#BGPPGGB###&&&&#&@@@@@@@\n@@@@@@@&&@&&#&&&&&&@@@&&&&&&&&&&&###&&&&&@@@@@@@@@@@@@@&&#GP5PPGB##&&&&&#&&##@@@@@@@@\n@@@@@@@&&&&#&&&&&&@@&&&&&&&&&&&&&&&###&&&&@@@@@@@@@&&#GPP5PGB&&@@@@@&&##B&##@@@@@@@@@\n@@@@@@&&@&&#&&@&&@&&&@@@@@@&&&&&&&&&&##&&&&&@@&&&#BGPPPGB&@@@@@@@@@&##BB#B#@@@@@@@@@@\n@@@@@@@&@&&#&&&&&@&&@@@@@@@@@&&&&&&&&&&#&&&&##BGGGGGB#&@@@@@@@@@@&#BBB###&@@@@@@@@@@@\n@@@@@@@&&&&#&&@&&@&&&@@@@@@@@@@&&&&&&&&#B##BBGBBBB#&&@@@@@@@@@&&#BBBBB#&@@@@@@@@@@@@@\n@@@@@@@&&&&##&&&&&&&&&@@@@@@@@&&&&&&&&#&BGBB#BB##&&&@@@@@@@&&#BBBBBB#&&@@@@@@@@@@@@@@\n@@@@@@@@&&&&##&&&&&&&&&&&&@@&&&&@@&&&@&#BG###B&#&&&&&&&&&&#BBBBB###&@@@@@@@@@@@@@@@@@\n@@@@@@@@@&&&&##&&&&&&&&&&&&&&@@@&&&&&&B#&B#&##&&#&&&&###########&&@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@&&&&&###&&&&&&&&&&&&&&&&&&&##&&#&&&#&&&&&&&&&######&&@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@&&&&&&###&&&&&&&&&&&&&&##&&&&&&&@&&&&&&&&###&&&@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@&&&&&&&&###########&&&&&&&&@&&@@@@@&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
     
@@ -51,10 +52,10 @@ def selection_msg(option,x,y,z):
         print(f" \n based on Edward N. Lorenz:\n Rate of convection proportional value = {x} \n Horizontal Temperature Variation proportional value = {y} \n Vertical Temprature Variation proportional value = {z}")
         
     elif option == "2":
-        print(f" \n based on your Hardware state:\n Rate of convection proportional value = {x} = CPU-Temp \n Horizontal Temperature Variation proportional value = {y} = Mem-Load \n Vertical Temprature Variation proportional value = {z} = Net-Interface Recived Packets")        
+        print(f" \n based on your Hardware state:\n Rate of convection proportional value = {x} = CPU-Temp {chr(176)}C \n Horizontal Temperature Variation proportional value = {y} = Mem-Load in Mibibyte \n Vertical Temprature Variation proportional value = {z} = Net-Interface Recived Packets")        
     
     elif option == "3":    
-        print(f" \n based on the Weather in {city_name}:\n Rate of convection proportional value = {x} = Temperature \n Horizontal Temperature Variation proportional value = {y} = Humidity \n Vertical Temprature Variation proportional value = {z} = Wind")    
+        print(f" \n based on the Weather in {city_name}:\n Rate of convection proportional value = {x} = Temperature {chr(176)}C \n Horizontal Temperature Variation proportional value = {y} = Humidity % \n Vertical Temprature Variation proportional value = {z} = Wind Km/h")    
 
     elif option == "4":    
         print(f" \n based on stdin:\n Rate of convection proportional value = {x}\n Horizontal Temperature Variation proportional value = {y}\n Vertical Temprature Variation proportional value = {z}")
