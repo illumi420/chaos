@@ -244,7 +244,7 @@ def weatherInitConditions():
     file.close()    
     
     global city_name 
-    city_name = input(" Enter city you want to fetch weather data from> ").capitalize()
+    city_name = input(" Enter city you want to fetch weather data from> ").title()
     print(" press Enter for Random City")
 
     if len(city_name) != 0:
