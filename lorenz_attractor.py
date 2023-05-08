@@ -6,6 +6,9 @@ import funcs as funcs
 from datetime import datetime 
 
 
+print() # greeting ascii_attractor
+print(funcs.ascii_art())
+
 graphs_path = (funcs.GRAPHS_PATH)
 # graphs_path = os.getcwd()+"/graphs/"
 WIDTH, HEIGHT, DPI = 1000, 750, 100
@@ -49,24 +52,26 @@ time_stamp = current_time.timestamp()
 date_time = datetime.fromtimestamp(time_stamp)
 
 file_name = f"{graphs_path}/lorenz"
+
 value = funcs.menu()
 
-if value == 2:
+if value == "2":
     u0, v0, w0 = funcs.hardwareInitConditions()
     file_name += f"_cpu={u0}-mem={v0}-net={w0}"
 
-elif value == 3:    
+elif value == "3":    
     u0, v0, w0, location = funcs.weatherInitConditions()
     file_name += f"_{location}_temp={u0}-humi={v0}-wind={w0}"
     
-elif value == 4:
+elif value == "4":
     u0, v0, w0 = funcs.manual_randomInitConditions()
     
     if funcs.random_flag:
         file_name += f"_random_x={u0}-y={v0}-z={w0}"
     else:    
         file_name += f"_x={u0}-y={v0}-z={w0}"
-        
+
+
 funcs.selection_msg(value,u0,v0,w0)
 colormap = funcs.mood()
 

@@ -9,26 +9,45 @@ GRAPHS_PATH = os.getcwd()+"/graphs/"
 
 def ascii_art():
     ascii_art = "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@&&&&&&&&&&&##&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&&&&@@@@@@@@@@\n@@@@@@@@@&&&&&&##&&&&&&&&&####&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@&&#BBBB##&&&&@@@@@@@@\n@@@@@@@@&&&&&#&&&&&&&&&&&&&&&&####&&&&&@@@@@@@@@@@@@@@@@@@@&&#BGPPGGB###&&&&#&@@@@@@@\n@@@@@@@&&@&&#&&&&&&@@@&&&&&&&&&&&###&&&&&@@@@@@@@@@@@@@&&#GP5PPGB##&&&&&#&&##@@@@@@@@\n@@@@@@@&&&&#&&&&&&@@&&&&&&&&&&&&&&&###&&&&@@@@@@@@@&&#GPP5PGB&&@@@@@&&##B&##@@@@@@@@@\n@@@@@@&&@&&#&&@&&@&&&@@@@@@&&&&&&&&&&##&&&&&@@&&&#BGPPPGB&@@@@@@@@@&##BB#B#@@@@@@@@@@\n@@@@@@@&@&&#&&&&&@&&@@@@@@@@@&&&&&&&&&&#&&&&##BGGGGGB#&@@@@@@@@@@&#BBB###&@@@@@@@@@@@\n@@@@@@@&&&&#&&@&&@&&&@@@@@@@@@@&&&&&&&&#B##BBGBBBB#&&@@@@@@@@@&&#BBBBB#&@@@@@@@@@@@@@\n@@@@@@@&&&&##&&&&&&&&&@@@@@@@@&&&&&&&&#&BGBB#BB##&&&@@@@@@@&&#BBBBBB#&&@@@@@@@@@@@@@@\n@@@@@@@@&&&&##&&&&&&&&&&&&@@&&&&@@&&&@&#BG###B&#&&&&&&&&&&#BBBBB###&@@@@@@@@@@@@@@@@@\n@@@@@@@@@&&&&##&&&&&&&&&&&&&&@@@&&&&&&B#&B#&##&&#&&&&###########&&@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@&&&&&###&&&&&&&&&&&&&&&&&&&##&&#&&&#&&&&&&&&&######&&@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@&&&&&&###&&&&&&&&&&&&&&##&&&&&&&@&&&&&&&&###&&&@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@&&&&&&&&###########&&&&&&&&@&&@@@@@&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+    
+    gretting = " Welcome to lorenz-attractor CLI tool\n\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on so that the Chaos would settle into\n Determination by taking Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
 
-    return ascii_art
+    return ascii_art+gretting
 
 
 def menu():
-    print()
-    print(ascii_art())
-    selection = None
-    gretting = " Welcome to lorenz-attractor CLI tool\n\n This Tool aims to create an image of the Butterfly shaped lorenz-attractor\n in order to portrait the Butterfly Effect on a graphic plot, the Attractor needs\n Initial Conditions to Sensitively Debend on so that the Chaos would settle into\n Determination by taking Unpredictable Patterns\n\n Please Select from the following Initial Conditions:\n\n"
+    options = " 1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n 4.Manualy/Random \n 0.quit\n"
+    print(options)
+    print(" press Enter for Random option")
+    selection =  input(" please enter option number> ")
     
-    options = "1.Edward Lorenz\n 2.Your Hardware\n 3.City's Weather\n 4.Manualy/Random \n 0.quit\n"
-    while selection != 0:
-        print(gretting,options)
-        selection =  int(input(" please enter option number> "))
-        if selection == 0:
-            quit()
-        else:
-            return selection
-        
-        
+    while ( len(selection) != 0 ):
+        try:
+                
+            if selection[0] == "0":
+                print(selection[0])
+                quit()
+            
+            elif list(str(selection))[0] in "1234":    
+                print(selection[0])
+                return selection[0]
+            
+            else:
+                print(" Please enter valid option NUMBER!")
+                print()
+                return menu()
+                
+        except IndexError:
+            continue
+    
+    if len(selection) == 0:
+        selection = random.randint(1,4)
+        # finding option name based on random option number
+        option = (re.findall(rf'(?<={str(selection)}.)[^.\n]*',options))
+        print(f" chose option {selection}.{option[0]}")
+        return str(selection)
+            
+          
 def selection_msg(option,x,y,z):
     if option == 1:    
         print(f" \n based on Edward N. Lorenz:\n Rate of convection proportional value = {x} \n Horizontal Temperature Variation proportional value = {y} \n Vertical Temprature Variation proportional value = {z}")
@@ -144,7 +163,7 @@ def divider(num):
     return (float(num)) / zeros
 
 
-def clean_data(a_string):
+def cleaned_weather_data(a_string):
     value = ""
     for n in a_string:
         if n.isdigit():
@@ -152,7 +171,7 @@ def clean_data(a_string):
     return float(value)        
     
     
-def controling_input(input_string):
+def controling_input_float(input_string):
     new_float = "0."
     temp = ""
     special_chars = "/,-#_!?@\"|';:+$%=*([])}{><"
@@ -255,8 +274,8 @@ def weatherInitConditions():
             soup = BeautifulSoup(res.text, 'html.parser')
             
             temperature = divider(float(soup.select('#wob_tm')[0].getText().strip()))
-            humidity = divider(clean_data(soup.select('#wob_hm')[0].getText().strip())) * 10
-            wind = divider(clean_data(soup.select('#wob_ws')[0].getText().strip())) * 10
+            humidity = divider(cleaned_weather_data(soup.select('#wob_hm')[0].getText().strip())) * 10
+            wind = divider(cleaned_weather_data(soup.select('#wob_ws')[0].getText().strip())) * 10
             
             return temperature, humidity, wind, city_name
         except:
@@ -274,8 +293,8 @@ def weatherInitConditions():
             soup = BeautifulSoup(res.text, 'html.parser')
             
             temperature = divider(float(soup.select('#wob_tm')[0].getText().strip()))
-            humidity = divider(clean_data(soup.select('#wob_hm')[0].getText().strip())) * 10
-            wind = divider(clean_data(soup.select('#wob_ws')[0].getText().strip())) * 10
+            humidity = divider(cleaned_weather_data(soup.select('#wob_hm')[0].getText().strip())) * 10
+            wind = divider(cleaned_weather_data(soup.select('#wob_ws')[0].getText().strip())) * 10
         
             return temperature, humidity, wind, city_name
         
@@ -283,12 +302,10 @@ def weatherInitConditions():
             return " Please try again", weatherInitConditions()
         
 
-
-
 def manual_randomInitConditions():
     print()
     print(" press Enter for Random value")
-    x, y, z = controling_input(input(" enter proportional value for Rate of convection x ")), controling_input(input(" enter proportional value Horizontal Temperature Variation y ")), controling_input(input(" enter proportional value Vertical Temperature Variation z "))
+    x, y, z = controling_input_float(input(" enter proportional value for Rate of convection x ")), controling_input_float(input(" enter proportional value Horizontal Temperature Variation y ")), controling_input_float(input(" enter proportional value Vertical Temperature Variation z "))
         
     return x, y * 10, z * 10
 
@@ -299,7 +316,7 @@ def manual_randomInitConditions():
 
 # print(hardwareInitConditions())
 # weatherInitConditions()
-# print(clean_data("17%"))
+# print(cleaned_weather_data("17%"))
 #print(fileserver())
 #weatherInitConditions1()
 #mood()
