@@ -25,11 +25,9 @@ def menu():
         try:
                 
             if selection[0] == "0":
-                print(selection[0])
                 quit()
             
             elif list(str(selection))[0] in "1234":    
-                print(selection[0])
                 return selection[0]
             
             else:
@@ -99,6 +97,7 @@ def mood():
             return colormap_list_of_lists[color]
     except:
         print()
+        print(" plot colormap =", colormap_list_of_lists[random_mood][1])
         return colormap_list_of_lists[random_mood]
 
 

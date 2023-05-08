@@ -9,8 +9,7 @@ from datetime import datetime
 print() # greeting ascii_attractor
 print(funcs.ascii_art())
 
-graphs_path = (funcs.GRAPHS_PATH)
-# graphs_path = os.getcwd()+"/graphs/"
+
 WIDTH, HEIGHT, DPI = 1000, 750, 100
 
 # Lorenz paramters and initial conditions.
@@ -47,10 +46,8 @@ tmax, n = 100, 10000
 
 
 # Integrating User-Input to the orginal code, for manipulating the Initial Conditions values.
-current_time = datetime.now()
-time_stamp = current_time.timestamp()
-date_time = datetime.fromtimestamp(time_stamp)
 
+graphs_path = (funcs.GRAPHS_PATH)
 file_name = f"{graphs_path}/lorenz"
 
 value = funcs.menu()
@@ -106,6 +103,10 @@ cmap, mood_name = colormap
 for i in range(0,n-s,s):
     ax.plot(x[i:i+s+1], y[i:i+s+1], z[i:i+s+1], color=cmap(i/n), alpha=0.9)
     
+
+current_time = datetime.now()
+time_stamp = current_time.timestamp()
+date_time = datetime.fromtimestamp(time_stamp)
 
 fig.suptitle(str(f"{date_time} mood: {mood_name}"), fontsize=14, fontweight='bold',color='white')
 # Remove all the axis clutter, leaving just the curve.
