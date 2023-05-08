@@ -70,7 +70,6 @@ elif value == "4":
 
 
 funcs.selection_msg(value,u0,v0,w0)
-colormap = funcs.mood()
 
 
 def lorenz(t, X, sigma, beta, rho):
@@ -99,11 +98,12 @@ fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
 # Make the line multi-coloured by plotting it in segments of length s which
 # change in colour across the whole time series.
 s = 9
+colormap = funcs.mood()
 cmap, mood_name = colormap
 for i in range(0,n-s,s):
     ax.plot(x[i:i+s+1], y[i:i+s+1], z[i:i+s+1], color=cmap(i/n), alpha=0.9)
     
-
+    
 current_time = datetime.now()
 time_stamp = current_time.timestamp()
 date_time = datetime.fromtimestamp(time_stamp)
