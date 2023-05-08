@@ -107,21 +107,36 @@ def graphics_extension(fname):
 
 
 def fileserver():
-    run_server = "./fileservergraphs&"
-    subprocess.check_call(run_server, shell=True, text=True, executable="/bin/sh")
+    NETIF = str(subprocess.check_output("ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f1 | awk 'NR==2{print $1}'",shell=True, text=True, executable="/bin/sh")).replace("\n","") 
     
-    process_id =  str(subprocess.check_output("ps -aux | grep ./fileservergraphs | awk 'NR==1{print $2}'",shell=True, text=True, executable="/bin/sh")).replace("\n","")
+    IP = str(subprocess.check_output(f"ip -f inet addr show {NETIF} | sed -En -e 's/.*inet ([0-9.]+).*/\\1/p'", shell=True, text=True, executable="/bin/sh")).replace("\n","")
     
-    command  = "ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f1 | awk 'NR==2{print $1}'"
-    net_interface = str(subprocess.check_output(command,shell=True, text=True, executable="/bin/sh")).replace("\n","")
+    check_port = subprocess.check_output("netstat -tl | grep ':963' | awk 'NR==1{print $6}'",shell=True, text=True, executable="/bin/sh").replace("\n","")
     
-    command =  f"ip -f inet addr show {net_interface} | sed -En -e 's/.*inet ([0-9.]+).*/\\1/p'"
-    ip_address = str(subprocess.check_output(command, shell=True, text=True, executable="/bin/sh")).replace("\n","")
+   
     
-    msg = f" You can check stored graphics in {GRAPHS_PATH}\n by visiting http://{ip_address}:9630 from your Web-Browser\n you can stop the file server by kill {process_id}"
+    msg = f" You can check stored graphics in {GRAPHS_PATH}\n by visiting http://{IP}:9630 from your Web-Browser\n you can stop the file server by kill "
     
-    return msg
-
+    if check_port == "LISTEN":
+        process_id = str(subprocess.check_output("ps -aux | grep ./fileservergraphs | awk 'NR==1{print $2}'",shell=True, text=True, executable="/bin/sh")).replace("\n","")
+        
+        check_service = subprocess.check_output("ps -p "+process_id+"| awk 'NR==2{print $4}'",shell=True, text=True, executable="/bin/sh").replace("\n","")
+        
+        if check_service == "fileservergraph":
+            return msg+process_id
+        else:
+            return " please make sure that port 9630 not in use!"
+    
+    
+    else:
+        run_server = "./fileservergraphs&"
+        subprocess.check_call(run_server, shell=True, text=True, executable="/bin/sh")
+        
+        process_id =  str(subprocess.check_output("ps -aux | grep ./fileservergraphs | awk 'NR==1{print $2}'",shell=True, text=True, executable="/bin/sh")).replace("\n","")
+    
+        return msg+process_id
+    
+print(fileserver())       
 
 def divider(num):
     num = int(num)

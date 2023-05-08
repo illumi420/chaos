@@ -13,7 +13,7 @@ WIDTH, HEIGHT, DPI = 1000, 750, 100
 # Lorenz paramters and initial conditions.
 
 # Constants:
-sigma, beta, rho = 12, 2.667, 27 
+sigma, beta, rho = 12, 2.667, 28 
 """ 
 sigma(Prandtl number) σ : is the ratio of momentum diffusivity (kinematic viscosity) to thermal diffusivity.
 It is used in fluids and flow rates to signify the rate of heat transfer.
