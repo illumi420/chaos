@@ -155,6 +155,7 @@ def fileserver():
         process_id =  str(subprocess.check_output("ps -aux | grep ./fileservergraphs | awk 'NR==1{print $2}'",shell=True, text=True, executable="/bin/sh")).replace("\n","")
     
         return msg+process_id
+
      
 
 def divider(num):

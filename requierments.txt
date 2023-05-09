@@ -1,8 +1,8 @@
-beautifulsoup
+beautifulsoup4
 certifi
 charset-normalizer
 contourpy
-cycler1
+cycler
 fonttools
 idna
 importlib-resources
@@ -10,7 +10,6 @@ kiwisolver
 matplotlib
 packaging
 Pillow
-pkg_resources
 pyparsing
 python-dateutil
 requests
