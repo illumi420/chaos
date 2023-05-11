@@ -97,7 +97,7 @@ fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
 
 # Make the line multi-coloured by plotting it in segments of length s which
 # change in colour across the whole time series.
-bla = []
+
 s = 9
 colormap = funcs.mood()
 cmap, mood_name = colormap
