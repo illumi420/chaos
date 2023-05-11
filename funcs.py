@@ -76,11 +76,16 @@ def mood():
         [plt.cm.bone, "bone"],
         [plt.cm.afmhot, "afmhot"],
         [plt.cm.gist_heat, "gist_heat"],
-        [plt.cm.Wistia, "Wistia"]
+        [plt.cm.Wistia, "Wistia"],
+        [plt.cm.gist_rainbow, "gist_rainbow"],
+        [plt.cm.Accent, "Accent"], 
+        [plt.cm.prism, "prism"],
+        [plt.cm.twilight, "twilight"]
         ]
+    
     cm_list_indecies =  [i for i in range(len(colormap_list_of_lists))]
     
-    msg = "\n btw how are you doing today ?\n can you please answer from the following options\n which can describe your mood the best:\n\n"
+    msg = "\n btw how are you doing today ?\n can you please answer from the following colormap options\n which can describe your mood the best:\n\n"
     options = ""
     moods = {}
     
@@ -176,7 +181,7 @@ def cleaned_weather_data(a_string):
 def controling_input_float(input_string):
     new_float = "0."
     temp = ""
-    special_chars = "/,-#_!?@\"|';:+$%=*([])}{><"
+    special_chars = " /,-#_!?@\"|';:+$%=*([])}{><"
                          
     # for mixed values if input is not empty
     if ( len(input_string) != 0 ) and ( (any(s_chars in string.ascii_letters for s_chars in input_string)) or (any(s_chars in special_chars for s_chars in input_string)) ) and ( (input_string[0] != ".") or (input_string[-1] != ".") ):
